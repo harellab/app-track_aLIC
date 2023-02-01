@@ -60,8 +60,8 @@ inputAtlas=wmaPyTools.roiTools.inflateAtlasIntoWMandBG(inputAtlas, 1)
 invalidLabels=[63,31,4,14,15,43,24,72]
 
 # #performSegmentation
-#extract whole brain segmentation
-#set to path to target whole brain tractogram
+#extract whole brain segmentation (KS: whole ALIC segmentation)
+#set to path to target whole brain tractogram (KS: whole ALIC tractogram)
 #smaller = faster
 tractogramPath='track.tck'
 #but also copy it over to the output dir because it won't take it otherwise
@@ -132,9 +132,9 @@ for iIndex,iSide in enumerate(sideList):
     frontalROIS=[32,28,27,26,24,20,19,18,14,12,3,2]
     #LR spinothalROIS
     #OLD
-    #spinoThalamicROIS=[[9,10,16,28],[48,49,16,60]]
+    spinoThalamicROIS=[[9,10,16,28],[48,49,16,60]]
     #subcortOverrideLabels=[17, 18, 15, 16, 14, 13, 20, 19, 30, 28, 29, 27, 31,32]
-    spinoThalamicROIS=[[15027, 15031,15015,15017,15013,10,16],[15028, 15032,15016,15018,15014,49,16]]
+    #spinoThalamicROIS=[[15027, 15031,15015,15017,15013,10,16],[15028, 15032,15016,15018,15014,49,16]]
     #also get contraWM for good measure
     contraWM=[41,2]
     
@@ -152,7 +152,7 @@ for iIndex,iSide in enumerate(sideList):
     
   
     #create a plan to split the superior and inferior streamlines
-    #top of th diencephalon, posterior to the medial orbitofrontal, lateral to medial border of putamen
+    #top of the diencephalon, posterior to the medial orbitofrontal, lateral to medial border of putamen
     acumbensLabel=[26,58]
     globPalLabel=[13,52]
     ccLabel=255
@@ -212,7 +212,7 @@ for iIndex,iSide in enumerate(sideList):
         classificationOut=wmaPyTools.streamlineTools.updateClassification(superiorStreamsBool,'superior_'+tractName,existingClassification=classificationOut)
         classificationOut=wmaPyTools.streamlineTools.updateClassification(inferiorStreamsBool,'inferior_'+tractName,existingClassification=classificationOut)
 
-    
+    #saves out the individual tracts name + superior/inferior
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[superiorStreamsBool],os.path.join(outDir,'superior_'+tractName+'.tck'))
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[inferiorStreamsBool],os.path.join(outDir,'inferior_'+tractName+'.tck'))
 
