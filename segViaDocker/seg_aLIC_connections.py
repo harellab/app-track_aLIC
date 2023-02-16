@@ -217,7 +217,7 @@ for iIndex,iSide in enumerate(sideList):
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[superiorStreamsBool],os.path.join(outDir,'superior_'+tractName+'.tck'))
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[inferiorStreamsBool],os.path.join(outDir,'inferior_'+tractName+'.tck'))
     #saves out combined superior + inferior tracts individual tracts name
-    wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[superiorStreamsBool or inferiorStreamsBool],os.path.join(outDir,'combined_'+tractName+'.tck'))
+    wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[comboROIBool],os.path.join(outDir,'combined_'+tractName+'.tck'))
 
 
 from scipy.io import savemat
