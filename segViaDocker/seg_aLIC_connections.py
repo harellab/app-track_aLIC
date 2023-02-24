@@ -201,6 +201,7 @@ for iIndex,iSide in enumerate(sideList):
    
     superiorStreamsBool=np.logical_and(comboROIBool,np.logical_not(inferiorStreams))
     inferiorStreamsBool=np.logical_and(comboROIBool,inferiorStreams)
+
     
     #if the classification structure does not already exist
     if not 'classificationOut' in locals():
@@ -215,6 +216,9 @@ for iIndex,iSide in enumerate(sideList):
     #saves out the individual tracts name + superior/inferior
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[superiorStreamsBool],os.path.join(outDir,'superior_'+tractName+'.tck'))
     wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[inferiorStreamsBool],os.path.join(outDir,'inferior_'+tractName+'.tck'))
+    #saves out combined superior + inferior tracts individual tracts name
+    wmaPyTools.streamlineTools.stubbornSaveTractogram(streamlines[comboROIBool],os.path.join(outDir,'combined_'+tractName+'.tck'))
+
 
 from scipy.io import savemat
 #save down the classification structure
