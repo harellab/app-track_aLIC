@@ -1,15 +1,19 @@
 {
-    "diff": "testdata/dwi.nii.gz",
-    "bvec": "testdata/dwi.bvecs",
-    "bval": "testdata/dwi.bvals",
-    "anat": "testdata/t1.nii.gz",
-    "fsDir": "testdata",
-    "freesurfer": "testdata",
-    "tractogram": "output/tract.tck",
+    "anat":"indata/T1w_acpc_dc_restore.nii.gz",
+
+    "diff":"indata/eddy_wrapped_avg_image_space-acpc.nii.gz",
+
+    "bvec":"indata/bvecs",
+
+    "bval":"indata/bvals_b9",
+
+    "fsDir": "indata",
+    "freesurfer": "indata",
+    "tractogram": "output/track.tck",
     "ens_lmax": true,
     "imaxs": "8",
     "curvs": "5 10 20 40 80",
-    "num_fibers": "1000",
+    "num_fibers": "30000",
     "min_length": "10",
     "max_length": "200",
     "tensor_fit": "",
