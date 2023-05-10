@@ -351,6 +351,23 @@ echo "Creating 5-Tissue-Type (5TT) tracking mask..."
 5ttgen fsl ${anat}.mif 5tt.mif -mask ${mask}.mif -nocrop -sgm_amyg_hipp -scratch ./tmp $([ "$PREMASK" == "true" ] && echo "-premasked") -force -nthreads $NCORE -quiet
 #5ttgen freesurfer ${fsDir}/mri/aparc.a2009s+aseg.nii.gz 5tt.mif -lut ${fsDir}/FreeSurferColorLUT.txt -sgm_amyg_hipp -nocrop -scratch ./tmp -force -nthreads $NCORE 
 
+# Harel lab modification: reassign all subcortical gray matter from 5TT 
+# mask as white matter
+# vol0000 = Cortical Gray matter
+# vol0001 = subcortical gray matter 
+# vol0002 = white matter
+# vol0003 = Cerebro-spinal Fluid (CSF)
+# vol0004 = pathological tissue
+mrconvert 5tt.mif 5tt.nii.gz -force
+fslsplit 5tt.nii.gz 5tt_vol -t
+
+fslmaths 5tt_vol0001.nii.gz -add 5tt_vol0002.nii.gz 5tt_vol0002.nii.gz
+fslmaths 5tt_vol0001.nii.gz -mul 0 5tt_vol0001.nii.gz
+
+fslmerge -t 5tt.nii.gz 5tt_vol0000.nii.gz 5tt_vol0001.nii.gz \
+    5tt_vol0002.nii.gz 5tt_vol0003.nii.gz 5tt_vol0004.nii.gz
+mrconvert 5tt.nii.gz 5tt.mif -force
+
 ## generate gm-wm interface seed mask
 5tt2gmwmi 5tt.mif gmwmi_seed.mif -force -nthreads $NCORE -quiet
 
