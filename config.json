@@ -1,11 +1,11 @@
 {
-    "anat":"indata/T1w_acpc_dc_restore.nii.gz",
+    "anat":"indata/T1w_acpc.nii.gz",
 
-    "diff":"indata/eddy_wrapped_avg_image_space-acpc.nii.gz",
+    "diff":"indata/diffusion_acpc.nii.gz",
 
     "bvec":"indata/bvecs",
 
-    "bval":"indata/bvals_b9",
+    "bval":"indata/bvals",
 
     "fsDir": "indata",
     "freesurfer": "indata",
