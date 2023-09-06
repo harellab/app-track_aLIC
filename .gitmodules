@@ -1,4 +1,4 @@
 [submodule "wma_pyTools"]
 	path = wma_pyTools
-	url = https://github.com/DanNBullock/wma_pyTools.git
+	url = https://github.com/hbraunDSP/wma_pyTools.git
 	ignore = dirty
